@@ -8,6 +8,7 @@ public class TileManager : MonoBehaviour
 {
     public static event System.Action LaunchCheck;
 
+    public GameManager Game;
     public int row;
     public int column;
     public float Offset;
@@ -24,12 +25,6 @@ public class TileManager : MonoBehaviour
     private void Awake()
     {
         TileArray = new Tile[row, column];
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     private void Update()

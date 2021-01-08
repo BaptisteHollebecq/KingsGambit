@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf9784a424d7dc4f809936ec2951052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileColor: 3
+  TileColor: 0
+  TilePiece: 2
   isSelected: 0
   BaseMat: {fileID: 2100000, guid: 68a1a83a3375f3a4e80c167cd66e3795, type: 2}
   SelectedMat: {fileID: 2100000, guid: 9c7fd12ca5d543f4581a049be79fed7d, type: 2}
