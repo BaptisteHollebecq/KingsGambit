@@ -300,8 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdf4a29e0f03024da549db4fac9ab22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameCanvas: {fileID: 0}
-  PileFace: {fileID: 0}
+  GameCanvas: {fileID: 2883809501953823374}
+  PileFace: {fileID: 9116428927062372812}
 --- !u!1 &4927552690896075162
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ Canvas:
   m_GameObject: {fileID: 5999875183129024023}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

@@ -10,21 +10,21 @@ public class Ui : MonoBehaviour
 
     public void ShowGameCanvas()
     {
-        GameCanvas.GetComponent<CanvasGroup>().alpha = 1;
+        GameCanvas.gameObject.SetActive(true);
     }
 
     public void HideGameCanvas()
     {
-        GameCanvas.GetComponent<CanvasGroup>().alpha = 0;
+        GameCanvas.gameObject.SetActive(false);
     }
 
     public void ShowPileFaceCanvas()
     {
-        PileFace.GetComponent<CanvasGroup>().alpha = 1;
+        PileFace.gameObject.SetActive(true);
     }
 
     public void HidePileFaceCanvas()
     {
-        PileFace.GetComponent<CanvasGroup>().alpha = 0;
+        PileFace.gameObject.SetActive(false);
     }
 }

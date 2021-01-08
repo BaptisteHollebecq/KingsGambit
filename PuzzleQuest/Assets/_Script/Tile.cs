@@ -70,7 +70,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Manager.canPlay)
+        if (Manager.canPlay && Manager.Game.playerTurn)
         {
             if (Manager.SelectedTile == null && !isSelected)
             {
@@ -98,6 +98,7 @@ public class Tile : MonoBehaviour
                         }
 
                         Manager.SelectedTile.UnSelect();
+                        Manager.Game.playerTurn = false;
                     }
                     else
                     {
@@ -175,7 +176,7 @@ public class Tile : MonoBehaviour
 
         while (x > 0)
         {
-            if (Manager.TileArray[x - 1, y] != null && (Manager.TileArray[x - 1, y].TileColor == TileColor && Manager.TileArray[x - 1, y].TilePiece == TilePiece))
+            if (Manager.TileArray[x - 1, y] != null && Manager.TileArray[x - 1, y].TileColor == TileColor && Manager.TileArray[x - 1, y].TilePiece == TilePiece)
             {
                 x--;
             }
@@ -189,7 +190,7 @@ public class Tile : MonoBehaviour
 
         while (x < Manager.row - 1)
         {
-            if (Manager.TileArray[x + 1, y] != null && (Manager.TileArray[x + 1, y].TileColor == TileColor && Manager.TileArray[x + 1, y].TilePiece == TilePiece))
+            if (Manager.TileArray[x + 1, y] != null && Manager.TileArray[x + 1, y].TileColor == TileColor && Manager.TileArray[x + 1, y].TilePiece == TilePiece)
             {
                 x++;
                 tH.Add(Manager.TileArray[x, y]);
@@ -214,7 +215,7 @@ public class Tile : MonoBehaviour
 
         while (y > 0)
         {
-            if (Manager.TileArray[x, y - 1] != null && (Manager.TileArray[x, y - 1].TileColor == TileColor && Manager.TileArray[x , y - 1].TilePiece == TilePiece))
+            if (Manager.TileArray[x, y - 1] != null && Manager.TileArray[x, y - 1].TileColor == TileColor && Manager.TileArray[x , y - 1].TilePiece == TilePiece)
             {
                 y--;
             }
@@ -228,7 +229,7 @@ public class Tile : MonoBehaviour
 
         while (y < Manager.column - 1)
         {
-            if (Manager.TileArray[x, y + 1] != null && (Manager.TileArray[x, y + 1].TileColor == TileColor && Manager.TileArray[x, y + 1].TilePiece == TilePiece))
+            if (Manager.TileArray[x, y + 1] != null && Manager.TileArray[x, y + 1].TileColor == TileColor && Manager.TileArray[x, y + 1].TilePiece == TilePiece)
             {
                 y++;
                 tV.Add(Manager.TileArray[x, y]);
