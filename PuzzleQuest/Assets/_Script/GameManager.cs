@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Ui.HideGameCanvas();
+        Ui.Hide("Game");
+        Ui.Hide("EndTurn");
     }
 
     private void Update()
@@ -30,9 +31,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitIa()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         Ia.BasicPlay();
         Iaturn = false;
+    }
+
+    public void ShowEndTurnUI()
+    {
+        Ui.Show("EndTurn");
+    }
+
+    public void EndTurn()
+    {
+        board.canPlay = true;
+        Ui.Hide("EndTurn");
     }
 
     public void GetColor()
@@ -61,10 +73,13 @@ public class GameManager : MonoBehaviour
     IEnumerator Wait(float time)
     {
         yield return new WaitForSeconds(time);
-        Ui.HidePileFaceCanvas();
-        Ui.ShowGameCanvas();
+        Ui.Hide("PileFace");
+        Ui.Show("Selection");
         Piece.SetActive(false);
-        StartCoroutine(board.Spawn());
     }
 
+    public void ButtonDame()
+    {
+
+    }
 }

@@ -23,10 +23,14 @@ public class IA : MonoBehaviour
                     t.Manager.Game.playerTurn = true;
                     if (t.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(t.DestroyTile(t.TileToDestroy));
                     }
                     if (tx.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(tx.DestroyTile(tx.TileToDestroy));
                     }
                     break;
@@ -49,10 +53,14 @@ public class IA : MonoBehaviour
                     t.Manager.Game.playerTurn = true;
                     if (t.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(t.DestroyTile(t.TileToDestroy));
                     }
                     if (tx.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(tx.DestroyTile(tx.TileToDestroy));
                     }
                     break;
@@ -75,10 +83,14 @@ public class IA : MonoBehaviour
                     t.Manager.Game.playerTurn = true;
                     if (t.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(t.DestroyTile(t.TileToDestroy));
                     }
                     if (tx.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(tx.DestroyTile(tx.TileToDestroy));
                     }
                     break;
@@ -101,10 +113,14 @@ public class IA : MonoBehaviour
                     t.Manager.Game.playerTurn = true;
                     if (t.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(t.DestroyTile(t.TileToDestroy));
                     }
                     if (tx.TileToDestroy != null)
                     {
+                        t.Manager.canPlay = false;
+                        t.Manager.Fill(false);
                         StartCoroutine(tx.DestroyTile(tx.TileToDestroy));
                     }
                     break;

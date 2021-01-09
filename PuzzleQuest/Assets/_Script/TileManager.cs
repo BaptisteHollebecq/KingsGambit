@@ -12,15 +12,14 @@ public class TileManager : MonoBehaviour
     public int row;
     public int column;
     public float Offset;
-    public GameObject Blue;
-    public GameObject Red;
-    public GameObject Green;
-    public GameObject Yellow;
+
+    public List<GameObject> SpawnablePiece;
     public Tile[,] TileArray;
     public bool SpawnFinished = false;
 
     [HideInInspector] public Tile SelectedTile = null;
     public bool canPlay = false;
+
 
     private void Awake()
     {
@@ -32,8 +31,14 @@ public class TileManager : MonoBehaviour
 
     }
 
-    private IEnumerator Fill()
+    public void Fill(bool first)
     {
+        StartCoroutine(Fillboard(first));
+    }
+
+    public IEnumerator Fillboard(bool first)
+    {
+        Debug.Log("Fill lunched");
         bool x;
         while (true)
         {
@@ -45,32 +50,9 @@ public class TileManager : MonoBehaviour
                 {
                     x = false;
                     //yield return new WaitForSeconds(0.1f);
-                    int rand = Random.Range(0, 4);
-                    GameObject inst = null;
+                    int rand = Random.Range(0, SpawnablePiece.Count);
 
-                    switch (rand)
-                    {
-                        case 0:
-                            {
-                                inst = Instantiate(Blue, new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
-                                break;
-                            }
-                        case 1:
-                            {
-                                inst = Instantiate(Red, new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
-                                break;
-                            }
-                        case 2:
-                            {
-                                inst = Instantiate(Green, new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
-                                break;
-                            }
-                        case 3:
-                            {
-                                inst = Instantiate(Yellow, new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
-                                break;
-                            }
-                    }
+                    GameObject inst = Instantiate(SpawnablePiece[rand], new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
 
                     inst.GetComponent<Tile>().X = i;
                     inst.GetComponent<Tile>().Y = row - 1;
@@ -81,8 +63,15 @@ public class TileManager : MonoBehaviour
                 }
 
             }
-            canPlay = x;
-        }       
+            if (x)
+            {
+                if (!Game.playerTurn && !first)
+                    Game.ShowEndTurnUI();
+                else
+                    canPlay = true; //attaque de l'enemi
+                break;
+            }
+        }
     }
 
     public IEnumerator Spawn()
@@ -97,31 +86,9 @@ public class TileManager : MonoBehaviour
             {
 
                 int rand = Random.Range(0, 4);
-                GameObject inst = null;
 
-                switch (rand)
-                {
-                    case 0:
-                        {
-                            inst = Instantiate(Blue, new Vector3(posX, posY, transform.position.z), Quaternion.identity);
-                            break;
-                        }
-                    case 1:
-                        {
-                            inst = Instantiate(Red, new Vector3(posX, posY, transform.position.z), Quaternion.identity);
-                            break;
-                        }
-                    case 2:
-                        {
-                            inst = Instantiate(Green, new Vector3(posX, posY, transform.position.z), Quaternion.identity);
-                            break;
-                        }
-                    case 3:
-                        {
-                            inst = Instantiate(Yellow, new Vector3(posX, posY, transform.position.z), Quaternion.identity);
-                            break;
-                        }
-                }
+                GameObject inst  = Instantiate(SpawnablePiece[rand], new Vector3(posX, posY, transform.position.z), Quaternion.identity);
+
 
                 inst.GetComponent<Tile>().X = i;
                 inst.GetComponent<Tile>().Y = j;
@@ -137,9 +104,9 @@ public class TileManager : MonoBehaviour
             posX += Offset;
         }
 
-        StartCoroutine(Fill());
-
         SpawnFinished = true;
         LaunchCheck?.Invoke();
+
+        Fill(true);
     }
 }

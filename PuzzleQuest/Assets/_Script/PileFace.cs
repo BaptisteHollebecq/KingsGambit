@@ -7,11 +7,11 @@ public class PileFace : MonoBehaviour
 {
     public void Black()
     {
-        transform.DORotate(new Vector3(4410, 0, 0), .3f);
+        transform.DORotate(new Vector3(90, 0, 0), .3f);
     }
 
     public void White()
     {
-        transform.DORotate(new Vector3(4230, 0, 0), .3f);
+        transform.DORotate(new Vector3(-90, 0, 0), .3f);
     }
 }

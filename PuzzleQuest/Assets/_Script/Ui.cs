@@ -6,25 +6,63 @@ public class Ui : MonoBehaviour
 {
     public Canvas GameCanvas;
     public Canvas PileFace;
+    public Canvas EndTurn;
+    public Canvas Selection;
 
-
-    public void ShowGameCanvas()
+    public void Show(string name)
     {
-        GameCanvas.gameObject.SetActive(true);
+        switch (name)
+        {
+            case "Game":
+                {
+                    GameCanvas.gameObject.SetActive(true);
+                    break;
+                }
+            case "PileFace":
+                {
+                    PileFace.gameObject.SetActive(true);
+                    break;
+                }
+            case "EndTurn":
+                {
+                    EndTurn.gameObject.SetActive(true);
+                    break;
+                }
+            case "Selection":
+                {
+                    Selection.gameObject.SetActive(true);
+                    break;
+                }
+        }
     }
 
-    public void HideGameCanvas()
+    public void Hide(string name)
     {
-        GameCanvas.gameObject.SetActive(false);
+
+        switch (name)
+        {
+            case "Game":
+                {
+                    GameCanvas.gameObject.SetActive(false);
+                    break;
+                }
+            case "PileFace":
+                {
+                    PileFace.gameObject.SetActive(false);
+                    break;
+                }
+            case "EndTurn":
+                {
+                    EndTurn.gameObject.SetActive(false);
+                    break;
+                }
+            case "Selection":
+                {
+                    Selection.gameObject.SetActive(false);
+                    break;
+                }
+        }
     }
 
-    public void ShowPileFaceCanvas()
-    {
-        PileFace.gameObject.SetActive(true);
-    }
 
-    public void HidePileFaceCanvas()
-    {
-        PileFace.gameObject.SetActive(false);
-    }
 }

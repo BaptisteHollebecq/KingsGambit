@@ -44,8 +44,9 @@ public class Tile : MonoBehaviour
 
     private void Start()
     {
-        if ((Manager.SpawnFinished && Y != Manager.row - 1) || (Manager.SpawnFinished && Manager.TileArray[X, Y - 1] != null))
+        if (Manager.SpawnFinished && Manager.TileArray[X, Y - 1] != null)
         {
+           
             CheckAndDestroy();
         }
 
@@ -90,12 +91,14 @@ public class Tile : MonoBehaviour
                         if (TileToDestroy != null)
                         {
                             Manager.canPlay = false;
+                            Manager.Fill(false);
                             StartCoroutine(DestroyTile(TileToDestroy));
                         }
 
                         if (Manager.SelectedTile.TileToDestroy != null)
                         {
                             Manager.canPlay = false;
+                            Manager.Fill(false);
                             StartCoroutine(Manager.SelectedTile.DestroyTile(Manager.SelectedTile.TileToDestroy));
                         }
 
@@ -272,6 +275,7 @@ public class Tile : MonoBehaviour
                 Manager.TileArray[t.X, t.Y] = null;
             }         
         }
+
     }
 
     public void Fall()
