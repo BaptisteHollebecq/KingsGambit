@@ -29,36 +29,22 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        bool check = true;
-        foreach(Tile t in TileArray)
-        {
-            if (t == null)
-            {
-                check = false;
-                break;
-            }
-        }
-        if (check == true)
-        {
-            canPlay = true;
-        }
-        else
-            canPlay = false;
 
     }
 
     private IEnumerator Fill()
     {
+        bool x;
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
-
+            x = true;
             for (int i = 0; i < column; i++)
             {
                 if (TileArray[i, column - 1] == null)
                 {
+                    x = false;
                     //yield return new WaitForSeconds(0.1f);
-
                     int rand = Random.Range(0, 4);
                     GameObject inst = null;
 
@@ -93,7 +79,9 @@ public class TileManager : MonoBehaviour
 
                     TileArray[i, column - 1] = inst.GetComponent<Tile>();
                 }
+
             }
+            canPlay = x;
         }       
     }
 

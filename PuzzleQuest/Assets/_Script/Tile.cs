@@ -89,11 +89,13 @@ public class Tile : MonoBehaviour
                     {
                         if (TileToDestroy != null)
                         {
+                            Manager.canPlay = false;
                             StartCoroutine(DestroyTile(TileToDestroy));
                         }
 
                         if (Manager.SelectedTile.TileToDestroy != null)
                         {
+                            Manager.canPlay = false;
                             StartCoroutine(Manager.SelectedTile.DestroyTile(Manager.SelectedTile.TileToDestroy));
                         }
 
@@ -260,8 +262,7 @@ public class Tile : MonoBehaviour
 
     public IEnumerator DestroyTile(List<Tile> list)
     {
-        yield return new WaitForSeconds(0.41f);
-
+        yield return new WaitForSeconds(0.4f);
         foreach (Tile t in list)
         {
 
