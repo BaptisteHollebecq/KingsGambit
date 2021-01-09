@@ -6,10 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public Ui Ui;
     public TileManager board;
+    public IA Ia;
     public GameObject Piece;
 
     public Tile.Colors playerColor;
     public bool playerTurn;
+
+    public bool Iaturn = false;
 
     private void Awake()
     {
@@ -18,10 +21,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (playerTurn == false && board.canPlay)
+        if (playerTurn == false && board.canPlay && Iaturn == false)
         {
-
+            Iaturn = true;
+            StartCoroutine(WaitIa());
         }
+    }
+
+    IEnumerator WaitIa()
+    {
+        yield return new WaitForSeconds(3);
+        Ia.BasicPlay();
+        Iaturn = false;
     }
 
     public void GetColor()
