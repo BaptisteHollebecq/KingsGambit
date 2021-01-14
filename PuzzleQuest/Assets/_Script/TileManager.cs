@@ -85,7 +85,7 @@ public class TileManager : MonoBehaviour
             for (int j = 0; j < column; j++)
             {
 
-                int rand = Random.Range(0, 4);
+                int rand = Random.Range(0, SpawnablePiece.Count);
 
                 GameObject inst  = Instantiate(SpawnablePiece[rand], new Vector3(posX, posY, transform.position.z), Quaternion.identity);
 
