@@ -45,3 +45,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ui: {fileID: 0}
   board: {fileID: 0}
+  Ia: {fileID: 0}
+  Piece: {fileID: 0}
+  DameBlanc: {fileID: 2597096141353937401, guid: 2519c411aa2d5c8428a42387a167c9dd,
+    type: 3}
+  FouBlanc: {fileID: 2597096141353937401, guid: 698b245966e7f6b4c890b09897ca2422,
+    type: 3}
+  CavalierBlanc: {fileID: 2597096141353937401, guid: db937fa8186800c439605a9b8b72e072,
+    type: 3}
+  TourBlanc: {fileID: 2597096141353937401, guid: ab9f43f9cfb51d642882c359fee31c32,
+    type: 3}
+  PionBlanc: {fileID: 2597096141353937401, guid: cc1cd30e21061c74e8416808d991cec0,
+    type: 3}
+  DameNoir: {fileID: 2597096141353937401, guid: 8ea9f2a7cbacdfc4ea104d8f54161f02,
+    type: 3}
+  FouNoir: {fileID: 2597096141353937401, guid: 174f36fa9e84aa640a9c5cffb538c978, type: 3}
+  CavalierNoir: {fileID: 2597096141353937401, guid: c919eea2e31b0134a9461a7125913e58,
+    type: 3}
+  TourNoir: {fileID: 2597096141353937401, guid: 1e628758d71864e4ab417a327f87018f,
+    type: 3}
+  PionNoir: {fileID: 2597096141353937401, guid: 9749f10015e736843ac1f724ed479d4e,
+    type: 3}
+  playerColor: 0
+  playerTurn: 0
+  Iaturn: 0

@@ -5,21 +5,32 @@ using UnityEngine.UI;
 
 public class Ui : MonoBehaviour
 {
+    public GameManager manager;
+    public GameUI game;
+
+
     public Canvas GameCanvas;
     public Canvas PileFace;
     public Canvas EndTurn;
     public Canvas Selection;
 
-
     public Image Piece1;
     public Image Piece2;
     public Image Piece3;
 
-    public Sprite Dame;
-    public Sprite Fou;
-    public Sprite Cavalier;
-    public Sprite Tour;
-    public Sprite Pion;
+    public Sprite DameBlanc;
+    public Sprite FouBlanc;
+    public Sprite CavalierBlanc;
+    public Sprite TourBlanc;
+    public Sprite PionBlanc;
+
+    public Sprite DameNoir;
+    public Sprite FouNoir;
+    public Sprite CavalierNoir;
+    public Sprite TourNoir;
+    public Sprite PionNoir;
+
+    public Sprite NullSprite;
 
     public void Show(string name)
     {
@@ -84,27 +95,42 @@ public class Ui : MonoBehaviour
         {
             case "Dame":
                 {
-                    sp = Dame;
+                    if (manager.playerColor == Tile.Colors.Blanc)
+                       sp = DameBlanc;
+                    else
+                        sp = DameNoir;
                     break;
                 }
             case "Fou":
                 {
-                    sp = Fou;
+                    if (manager.playerColor == Tile.Colors.Blanc)
+                        sp = FouBlanc;
+                    else
+                        sp = FouNoir;
                     break;
                 }
             case "Cavalier":
                 {
-                    sp = Cavalier;
+                    if (manager.playerColor == Tile.Colors.Blanc)
+                        sp = CavalierBlanc;
+                    else
+                        sp = CavalierNoir;
                     break;
                 }
             case "Tour":
                 {
-                    sp = Tour;
+                    if (manager.playerColor == Tile.Colors.Blanc)
+                        sp = TourBlanc;
+                    else
+                        sp = TourNoir;
                     break;
                 }
             case "Pion":
                 {
-                    sp = Pion;
+                    if (manager.playerColor == Tile.Colors.Blanc)
+                        sp = PionBlanc;
+                    else
+                        sp = PionNoir;
                     break;
                 }
         }

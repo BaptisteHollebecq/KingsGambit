@@ -52,7 +52,7 @@ public class TileManager : MonoBehaviour
                     //yield return new WaitForSeconds(0.1f);
                     int rand = Random.Range(0, SpawnablePiece.Count);
 
-                    GameObject inst = Instantiate(SpawnablePiece[rand], new Vector3(transform.position.x + i, transform.position.y + row - 1, transform.position.z), Quaternion.identity);
+                    GameObject inst = Instantiate(SpawnablePiece[rand], new Vector3(transform.position.x + (i * Offset), transform.position.y + ((row - 1) * Offset), transform.position.z), Quaternion.identity);
 
                     inst.GetComponent<Tile>().X = i;
                     inst.GetComponent<Tile>().Y = row - 1;

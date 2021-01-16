@@ -43,13 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3095caba446248e44bc61871857fc875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Game: {fileID: 0}
   row: 10
   column: 10
-  Offset: 1
-  Blue: {fileID: 4970471393746973763, guid: 0ad01eef75e76c74482b467b39c25710, type: 3}
-  Red: {fileID: 8010454545039174644, guid: 42ea03e250da2de44aaf1842bdd61671, type: 3}
-  Green: {fileID: 5694969625382945961, guid: ed903dc90c2b1b148a0fb7e3ab59ca8f, type: 3}
-  Yellow: {fileID: 7341618810867570021, guid: 6cd4d20b8da52b94eb20ca6d6d72db17, type: 3}
+  Offset: 1.15
+  SpawnablePiece: []
   SpawnFinished: 0
   SelectedTile: {fileID: 0}
   canPlay: 0

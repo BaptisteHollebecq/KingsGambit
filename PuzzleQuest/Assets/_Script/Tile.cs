@@ -24,20 +24,20 @@ public class Tile : MonoBehaviour
     public Piece TilePiece;
 
     public bool isSelected;
-    public Material BaseMat;
-    public Material SelectedMat;
+    public Sprite BaseMat;
+    public Sprite SelectedMat;
     public int X;
     public int Y;
     public TileManager Manager;
     public List<Tile> TileToDestroy;
 
-    private Renderer _ren;
+    private SpriteRenderer _sp;
     
     
 
     private void Awake()
     {
-        _ren = GetComponent<MeshRenderer>();
+        _sp = GetComponent<SpriteRenderer>();
 
         TileManager.LaunchCheck += CheckAndDestroy;
     }
@@ -129,14 +129,14 @@ public class Tile : MonoBehaviour
     {
         isSelected = true;
 
-        _ren.material = SelectedMat;
+        _sp.sprite = SelectedMat;
         Manager.SelectedTile = this;
     }
 
     public void UnSelect()
     {
         isSelected = false;
-        _ren.material = BaseMat;
+        _sp.sprite = BaseMat;
         Manager.SelectedTile = null;
     }
 
@@ -157,12 +157,12 @@ public class Tile : MonoBehaviour
         int tmpY = Y;
         
 
-        transform.DOLocalMove(new Vector3(t.X, t.Y, 0), 0.4f);
+        transform.DOLocalMove(new Vector3(t.X * Manager.Offset, t.Y * Manager.Offset, 0), 0.4f);
         Manager.TileArray[X, Y] = t;
         X = t.X;
         Y = t.Y;
         
-        t.transform.DOLocalMove(new Vector3(tmpX, tmpY, 0), 0.4f);
+        t.transform.DOLocalMove(new Vector3(tmpX * Manager.Offset, tmpY * Manager.Offset, 0), 0.4f);
         Manager.TileArray[t.X, t.Y] = this;
         t.X = tmpX;
         t.Y = tmpY; 
@@ -287,7 +287,7 @@ public class Tile : MonoBehaviour
             Y--;
         }
 
-        transform.DOLocalMove(new Vector3(X, Y, 0), 0.4f);
+        transform.DOLocalMove(new Vector3(X * Manager.Offset, Y * Manager.Offset, 0), 0.4f);
         Manager.TileArray[X, Y] = this;
 
         if (Y == 0 || Manager.TileArray[X, Y - 1] != null)
