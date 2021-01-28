@@ -18,7 +18,9 @@ public class TileManager : MonoBehaviour
     public bool SpawnFinished = false;
 
     [HideInInspector] public Tile SelectedTile = null;
-    public bool canPlay = false;
+    /*[HideInInspector]*/ public bool canCount = false;
+    /*[HideInInspector]*/ public bool canPlay = false;
+   
 
 
     private void Awake()
@@ -38,33 +40,36 @@ public class TileManager : MonoBehaviour
 
     public IEnumerator Fillboard(bool first)
     {
-        Debug.Log("Fill lunched");
         bool x;
         while (true)
         {
             yield return new WaitForSeconds(0.5f);
             x = true;
-            for (int i = 0; i < column; i++)
+            if (SpawnablePiece.Count != 0)
             {
-                if (TileArray[i, column - 1] == null)
+                for (int i = 0; i < column; i++)
                 {
-                    x = false;
-                    //yield return new WaitForSeconds(0.1f);
-                    int rand = Random.Range(0, SpawnablePiece.Count);
+                    if (TileArray[i, column - 1] == null)
+                    {
+                        x = false;
+                        //yield return new WaitForSeconds(0.1f);
+                        int rand = Random.Range(0, SpawnablePiece.Count);
 
-                    GameObject inst = Instantiate(SpawnablePiece[rand], new Vector3(transform.position.x + (i * Offset), transform.position.y + ((row - 1) * Offset), transform.position.z), Quaternion.identity);
+                        GameObject inst = Instantiate(SpawnablePiece[rand], new Vector3(transform.position.x + (i * Offset), transform.position.y + ((row - 1) * Offset), transform.position.z), Quaternion.identity);
 
-                    inst.GetComponent<Tile>().X = i;
-                    inst.GetComponent<Tile>().Y = row - 1;
-                    inst.transform.parent = transform;
-                    inst.GetComponent<Tile>().Manager = this;
+                        inst.GetComponent<Tile>().X = i;
+                        inst.GetComponent<Tile>().Y = row - 1;
+                        inst.transform.parent = transform;
+                        inst.GetComponent<Tile>().Manager = this;
 
-                    TileArray[i, column - 1] = inst.GetComponent<Tile>();
+                        TileArray[i, column - 1] = inst.GetComponent<Tile>();
+                    }
+
                 }
-
             }
             if (x)
             {
+                canCount = true;
                 if (!Game.playerTurn && !first)
                     Game.ShowEndTurnUI();
                 else
@@ -108,5 +113,16 @@ public class TileManager : MonoBehaviour
         LaunchCheck?.Invoke();
 
         Fill(true);
+    }
+
+    public void ClearBoard()
+    {
+        canCount = false;
+        SpawnablePiece.Clear();
+        TileArray = new Tile[row, column];
+        foreach (Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
     }
 }

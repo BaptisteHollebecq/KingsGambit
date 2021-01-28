@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     public Ui Ui;
     public TileManager board;
     public IA Ia;
+    public PieceManager PM;
+    public Map map;
     public GameObject Piece;
+    public CanvasText Text;
+
 
     public Opponent opps;
 
@@ -33,6 +37,9 @@ public class GameManager : MonoBehaviour
         Ui.Hide("Game");
         Ui.Hide("EndTurn");
         Ui.Hide("Selection");
+        Ui.Hide("PileFace");
+        Text.gameObject.SetActive(false);
+        Piece.SetActive(false);
     }
 
     private void Update()
@@ -53,17 +60,13 @@ public class GameManager : MonoBehaviour
 
     public void ShowEndTurnUI()
     {
-        Ui.Show("EndTurn");
-    }
-
-    public void EndTurn()
-    {
         board.canPlay = true;
-        Ui.Hide("EndTurn");
+        //Ui.Show("EndTurn");
     }
 
     public void GetColor()
     {
+
         int x = Random.Range(0, 2);
         switch (x)
         {
@@ -97,12 +100,47 @@ public class GameManager : MonoBehaviour
 
     public void ButtonStart()
     {
+        int i = 1;
+        foreach (GameObject p in board.SpawnablePiece)
+        {
+            switch (p.GetComponent<Tile>().TilePiece)
+            {
+                case Tile.Piece.Pion:
+                    {
+                        PM.SetUpPlayer("Pion", i);
+                        break;
+                    }
+                case Tile.Piece.Tour:
+                    {
+                        PM.SetUpPlayer("Tour", i);
+                        break;
+                    }
+                case Tile.Piece.Cavalier:
+                    {
+                        PM.SetUpPlayer("Cavalier", i);
+                        break;
+                    }
+                case Tile.Piece.Fou:
+                    {
+                        PM.SetUpPlayer("Fou", i);
+                        break;
+                    }
+                case Tile.Piece.Dame:
+                    {
+                        PM.SetUpPlayer("Dame", i);
+                        break;
+                    }
+            }
+            i++;
+        }
+
         // ajouter a la list les piece de l'ennemi
         if (playerColor == Tile.Colors.Blanc)
         {
             board.SpawnablePiece.Add(opps.PieceNoir1);
             board.SpawnablePiece.Add(opps.PieceNoir2);
             board.SpawnablePiece.Add(opps.PieceNoir3);
+
         }
         else
         {
@@ -111,6 +149,90 @@ public class GameManager : MonoBehaviour
             board.SpawnablePiece.Add(opps.PieceBlanche3);
         }
 
+        switch (opps.PieceNoir1.GetComponent<Tile>().TilePiece)
+        {
+            case Tile.Piece.Pion:
+                {
+                    PM.SetUpOpponent("Pion", 1);
+                    break;
+                }
+            case Tile.Piece.Tour:
+                {
+                    PM.SetUpOpponent("Tour", 1);
+                    break;
+                }
+            case Tile.Piece.Cavalier:
+                {
+                    PM.SetUpOpponent("Cavalier", 1);
+                    break;
+                }
+            case Tile.Piece.Fou:
+                {
+                    PM.SetUpOpponent("Fou", 1);
+                    break;
+                }
+            case Tile.Piece.Dame:
+                {
+                    PM.SetUpOpponent("Dame", 1);
+                    break;
+                }
+        }
+        switch (opps.PieceNoir2.GetComponent<Tile>().TilePiece)
+        {
+            case Tile.Piece.Pion:
+                {
+                    PM.SetUpOpponent("Pion", 2);
+                    break;
+                }
+            case Tile.Piece.Tour:
+                {
+                    PM.SetUpOpponent("Tour", 2);
+                    break;
+                }
+            case Tile.Piece.Cavalier:
+                {
+                    PM.SetUpOpponent("Cavalier", 2);
+                    break;
+                }
+            case Tile.Piece.Fou:
+                {
+                    PM.SetUpOpponent("Fou",2);
+                    break;
+                }
+            case Tile.Piece.Dame:
+                {
+                    PM.SetUpOpponent("Dame", 2);
+                    break;
+                }
+        }
+        switch (opps.PieceNoir3.GetComponent<Tile>().TilePiece)
+        {
+            case Tile.Piece.Pion:
+                {
+                    PM.SetUpOpponent("Pion", 3);
+                    break;
+                }
+            case Tile.Piece.Tour:
+                {
+                    PM.SetUpOpponent("Tour", 3);
+                    break;
+                }
+            case Tile.Piece.Cavalier:
+                {
+                    PM.SetUpOpponent("Cavalier", 3);
+                    break;
+                }
+            case Tile.Piece.Fou:
+                {
+                    PM.SetUpOpponent("Fou", 3);
+                    break;
+                }
+            case Tile.Piece.Dame:
+                {
+                    PM.SetUpOpponent("Dame", 3);
+                    break;
+                }
+        }
 
         Ui.game.SetUpOpps(opps);
 

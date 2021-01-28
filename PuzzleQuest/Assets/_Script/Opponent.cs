@@ -5,8 +5,11 @@ using UnityEngine;
 public class Opponent : MonoBehaviour
 {
     public Sprite Portrait;
-    public string name;
+    public new string name;
     public Sprite Flag;
+
+    public string EntryLine;
+    public string LoosedLine;
 
     public GameObject PieceBlanche1;
     public GameObject PieceBlanche2;

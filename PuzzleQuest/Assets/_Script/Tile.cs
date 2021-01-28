@@ -22,7 +22,7 @@ public class Tile : MonoBehaviour
 
     public Colors TileColor;
     public Piece TilePiece;
-
+    public float powerCharge = 10;
     public bool isSelected;
     public Sprite BaseMat;
     public Sprite SelectedMat;
@@ -32,8 +32,8 @@ public class Tile : MonoBehaviour
     public List<Tile> TileToDestroy;
 
     private SpriteRenderer _sp;
-    
-    
+
+
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class Tile : MonoBehaviour
     {
         if (Manager.SpawnFinished && Manager.TileArray[X, Y - 1] != null)
         {
-           
+
             CheckAndDestroy();
         }
 
@@ -55,6 +55,29 @@ public class Tile : MonoBehaviour
     private void OnDestroy()
     {
         TileManager.LaunchCheck -= CheckAndDestroy;
+
+        if (Manager.canCount)
+        {
+            if (TileColor == Manager.Game.playerColor)
+            {
+                if (Manager.Game.PM.PlayerP1.type == TilePiece && Manager.Game.PM.PlayerP1.Alive)
+                    Manager.Game.PM.PlayerP1.atkLevel += powerCharge;
+                if (Manager.Game.PM.PlayerP2.type == TilePiece && Manager.Game.PM.PlayerP2.Alive)
+                    Manager.Game.PM.PlayerP2.atkLevel += powerCharge;
+                if (Manager.Game.PM.PlayerP3.type == TilePiece && Manager.Game.PM.PlayerP3.Alive)
+                    Manager.Game.PM.PlayerP3.atkLevel += powerCharge;
+
+            }
+            else
+            {
+                if (Manager.Game.PM.OppP1.type == TilePiece && Manager.Game.PM.OppP1.Alive)
+                    Manager.Game.PM.OppP1.atkLevel += powerCharge;
+                if (Manager.Game.PM.OppP2.type == TilePiece && Manager.Game.PM.OppP2.Alive)
+                    Manager.Game.PM.OppP2.atkLevel += powerCharge;
+                if (Manager.Game.PM.OppP3.type == TilePiece && Manager.Game.PM.OppP3.Alive)
+                    Manager.Game.PM.OppP3.atkLevel += powerCharge;
+            }
+        }
     }
 
     private void Update()
@@ -66,7 +89,7 @@ public class Tile : MonoBehaviour
                 Fall();
             }
         }
-        
+
     }
 
     private void OnMouseDown()
@@ -155,17 +178,17 @@ public class Tile : MonoBehaviour
         Vector3 tmp = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         int tmpX = X;
         int tmpY = Y;
-        
+
 
         transform.DOLocalMove(new Vector3(t.X * Manager.Offset, t.Y * Manager.Offset, 0), 0.4f);
         Manager.TileArray[X, Y] = t;
         X = t.X;
         Y = t.Y;
-        
+
         t.transform.DOLocalMove(new Vector3(tmpX * Manager.Offset, tmpY * Manager.Offset, 0), 0.4f);
         Manager.TileArray[t.X, t.Y] = this;
         t.X = tmpX;
-        t.Y = tmpY; 
+        t.Y = tmpY;
     }
 
     public List<Tile> Check()
@@ -220,7 +243,7 @@ public class Tile : MonoBehaviour
 
         while (y > 0)
         {
-            if (Manager.TileArray[x, y - 1] != null && Manager.TileArray[x, y - 1].TileColor == TileColor && Manager.TileArray[x , y - 1].TilePiece == TilePiece)
+            if (Manager.TileArray[x, y - 1] != null && Manager.TileArray[x, y - 1].TileColor == TileColor && Manager.TileArray[x, y - 1].TilePiece == TilePiece)
             {
                 y--;
             }
@@ -247,7 +270,7 @@ public class Tile : MonoBehaviour
 
         if (tV.Count >= 3)
         {
-            foreach(Tile t in tV)
+            foreach (Tile t in tV)
             {
                 tH.Add(t);
             }
@@ -273,7 +296,7 @@ public class Tile : MonoBehaviour
             {
                 Destroy(t.gameObject);
                 Manager.TileArray[t.X, t.Y] = null;
-            }         
+            }
         }
 
     }
@@ -299,7 +322,7 @@ public class Tile : MonoBehaviour
                 StartCoroutine(DestroyTile(TileToDestroy));
             }
         }
-        
+
     }
 
     public void CheckAndDestroy()

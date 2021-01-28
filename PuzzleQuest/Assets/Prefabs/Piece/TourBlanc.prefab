@@ -97,9 +97,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileColor: 0
   TilePiece: 1
+  powerCharge: 15
   isSelected: 0
   BaseMat: {fileID: 21300000, guid: 0e67befaca503784aab8730cd703298a, type: 3}
-  SelectedMat: {fileID: 0}
+  SelectedMat: {fileID: 21300000, guid: f9108b46072460b47b3d1a555145666f, type: 3}
   X: 0
   Y: 0
   Manager: {fileID: 0}

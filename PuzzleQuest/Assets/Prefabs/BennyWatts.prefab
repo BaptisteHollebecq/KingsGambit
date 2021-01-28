@@ -44,8 +44,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Portrait: {fileID: 21300000, guid: 716fa99b0558af649af9bd2bdb841d71, type: 3}
-  name: Benny Watts
+  name: Wenny Batts
   Flag: {fileID: 0}
+  EntryLine: "Hey ! Tu dois surement me connaitre\u2026 Non ? Ah\u2026 Ce n\u2019est
+    pas grave. Je suis Benny Watts grand ma\xEEtre des Etats Unis ! Non toujours
+    pas ? Bref\u2026 J\u2019ai pari\xE9 que je te battrais alors es-tu pr\xEAte \xE0
+    relever le d\xE9fi ?"
+  LoosedLine: "Incroyable ! Tu m\xE9riterais d'\xEAtre plus connue ! Tu participes
+    au tournoi de \u201C\u201D ? Tous les plus grands joueurs y participent. Et j\u2019y
+    serais, bien entendu"
   PieceBlanche1: {fileID: 2597096141353937401, guid: db937fa8186800c439605a9b8b72e072,
     type: 3}
   PieceBlanche2: {fileID: 2597096141353937401, guid: 698b245966e7f6b4c890b09897ca2422,
